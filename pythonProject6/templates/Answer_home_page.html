@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>832101319</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(-225deg, #ddb1e5 0%, #afa6ef 29%, #f9bed2 100%);
+        }
+
+        canvas {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        button {
+            opacity: 1;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-family: cursive;
+        }
+        #qa-btn {
+            position: absolute;
+            top: 50%;
+            left: 43%;
+            font-size: 60px; 
+            font-family:  cursive;
+        }
+        #link-btns {
+            position: absolute;
+            bottom: 10%;
+            left: 35%;
+            display: flex; 
+            align-items: center;
+            justify-content: space-around;
+            width: 30%; 
+        }
+
+        #link-btns button {
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+        /*夜间模式*/
+        .checkbox-wrapper-5 {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        .checkbox-wrapper-5 .check {
+        --size: 40px;
+        position: relative;
+        background: linear-gradient(90deg, #dfdbff, #fdc9d9);
+        line-height: 0;
+        perspective: 400px;
+        font-size: var(--size);
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"],
+        .checkbox-wrapper-5 .check label,
+        .checkbox-wrapper-5 .check label::before,
+        .checkbox-wrapper-5 .check label::after,
+        .checkbox-wrapper-5 .check {
+        appearance: none;
+        display: inline-block;
+        border-radius: var(--size);
+        border: 0;
+        transition: 0.5s ease-in-out;
+        box-sizing: border-box;
+        cursor: pointer;
+        }
+
+        .checkbox-wrapper-5 .check label {
+        width: calc(2.2 * var(--size));
+        height: var(--size);
+        background: #999292;
+        overflow: hidden;
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"] {
+        position: absolute;
+        z-index: 1;
+        width: calc(.8 * var(--size));
+        height: calc(.8 * var(--size));
+        top: calc(.1 * var(--size));
+        left: calc(.1 * var(--size));
+        background: linear-gradient(45deg, #dedede, #ffffff);
+        box-shadow: 0 6px 7px rgba(0,0,0,0.3);
+        outline: none;
+        margin: 0;
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked {
+        left: calc(1.3 * var(--size));
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked + label {
+        background: transparent;
+        }
+
+        .checkbox-wrapper-5 .check label::before,
+        .checkbox-wrapper-5 .check label::after {
+        content: "· ·";
+        position: absolute;
+        overflow: hidden;
+        left: calc(.15 * var(--size));
+        top: calc(.5 * var(--size));
+        height: var(--size);
+        letter-spacing: calc(-0.04 * var(--size));
+        color: #9b9b9b;
+        font-family: "Times New Roman", serif;
+        z-index: 2;
+        font-size: calc(.6 * var(--size));
+        border-radius: 0;
+        transform-origin: 0 0 calc(-0.5 * var(--size));
+        backface-visibility: hidden;
+        }
+
+        .checkbox-wrapper-5 .check label::after {
+        content: "●";
+        top: calc(.65 * var(--size));
+        left: calc(.2 * var(--size));
+        height: calc(.1 * var(--size));
+        width: calc(.35 * var(--size));
+        font-size: calc(.2 * var(--size));
+        transform-origin: 0 0 calc(-0.4 * var(--size));
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked + label::before,
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked + label::after {
+        left: calc(1.55 * var(--size));
+        top: calc(.4 * var(--size));
+        line-height: calc(.1 * var(--size));
+        transform: rotateY(360deg);
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked + label::after {
+        height: calc(.16 * var(--size));
+        top: calc(.55 * var(--size));
+        left: calc(1.6 * var(--size));
+        font-size: calc(.6 * var(--size));
+        line-height: 0;
+        }
+        /*时钟*/
+        #clock {
+            font-size: 15px; 
+            width: auto;
+            position: absolute;
+            left: 40%;
+            top: 0;
+            justify-content: space-around; /* 横向居中对齐 */
+        }
+        .digit-group {
+            display: inline-block;
+            height: 100%;
+        }
+        .digit-group:not(:last-child)::after {
+            content: "\00a0\00a0\00a0"; /* 插入三个空格 */
+            letter-spacing: 10px; /* 调整间距大小 */
+        }
+
+        .digit {
+            display: inline-block;
+            width: 40px;
+            height: 100px;
+            box-sizing: border-box; /* 使用border-box盒模型 */
+            margin: 0; /* 重置外边距 */
+            vertical-align: top; /* 将数字顶部与行顶部对齐 */
+        }
+        .digit .digit-number {
+            color: rgba(232, 232, 232, 0.5);
+            transform: rotate(-90deg);
+            transition: font-size 200ms, transform 350ms, color 150ms;
+        }
+        .digit .digit-number.bright {
+            color:rgb(220, 208, 208);
+            font-size: 50px;
+            transform: rotate(0deg);
+        }
+    </style>
+  </head>
+
+  <body>
+    <div id="clock"></div>
+    <canvas></canvas>
+    <button id="qa-btn">Q&A主页</button>
+    <div id="link-btns">
+        <a href="{{ url_for('a') }}" target="_blank"><button>课件交流</button></a>
+        <a href="{{ url_for('b') }}" target="_blank"><button>主页</button></a>
+        <a href="{{ url_for('d') }}" target="_blank"><button>Q&A</button></a>
+    </div>
+    <div class="checkbox-wrapper-5">
+        <div class="check">
+          <input checked="" id="check-5" type="checkbox">
+          <label for="check-5"></label>
+        </div>
+    </div>
+  </body>
+    <script>
+      (function() {
+      // 时钟代码
+      let _time10 = Array.from(Array(10)).map((n, i) => i);
+      let _time6 = _time10.slice(0, 6);
+      let _time3 = _time10.slice(0, 3);
+      let _Structure = [
+        [_time3, _time10],
+        [_time6, _time10],
+        [_time6, _time10],
+      ];
+      let clock = document.getElementById("clock");
+      let digitGroups = [];
+      _Structure.forEach((digits) => {
+        let digitGroup = document.createElement("div");
+        digitGroup.classList.add("digit-group");
+        clock.appendChild(digitGroup);
+        digitGroups.push(digitGroup);
+        digits.forEach((digitList) => {
+          let digit = document.createElement("div");
+          digit.classList.add("digit");
+          digitList.forEach((n) => {
+            let ele = document.createElement("div");
+            ele.classList.add("digit-number");
+            ele.innerText = n;
+            digit.appendChild(ele);
+          });
+          digitGroup.appendChild(digit);
+        });
+      });
+
+      // 定义update函数
+      function updateClock() {
+        requestAnimationFrame(updateClock);
+        let date = new Date();
+        let time = [date.getHours(), date.getMinutes(), date.getSeconds()]
+          .map((n) => `0${n}`.slice(-2).split("").map((e) => +e))
+          .reduce((p, n) => p.concat(n), []);
+        time.forEach((n, i) => {
+          let digit =
+            digitGroups[Math.floor(i * 0.5)].children[i % 2].children;
+            Array.from(digit).forEach((e, i2) =>
+            e.classList[i2 === n ? "add" : "remove"]("bright")
+          );
+        });
+      }
+
+      updateClock(); // 启动时钟更新
+    })();
+    (function() {
+      // 星空背景代码
+      const STAR_COLOR = '#fff';
+      const STAR_SIZE = 3;
+      const STAR_MIN_SCALE = 0.2;
+      const OVERFLOW_THRESHOLD = 50;
+      const STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
+      const canvas = document.querySelector('canvas');
+      const context = canvas.getContext('2d');
+      let scale = 1;
+      let width;
+      let height;
+      let stars = [];
+      let pointerX;
+      let pointerY;
+      let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 };
+      let touchInput = false;
+      generate();
+    resize();
+    step();
+    window.onresize = resize;
+    canvas.onmousemove = onMouseMove;
+    canvas.ontouchmove = onTouchMove;
+    canvas.ontouchend = onMouseLeave;
+    document.onmouseleave = onMouseLeave;
+    function generate() {
+        for (let i = 0; i < STAR_COUNT; i++) {
+            stars.push({
+                x: 0,
+                y: 0,
+                z: STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE),
+            });
+        }
+    }
+    function placeStar(star) {
+        star.x = Math.random() * width;
+        star.y = Math.random() * height;
+    }
+    function recycleStar(star) {
+        let direction = 'z';
+        let vx = Math.abs(velocity.x);
+        let vy = Math.abs(velocity.y);
+        if (vx > 1 || vy > 1) {
+            let axis;
+            if (vx > vy) {
+                axis = Math.random() < vx / (vx + vy) ? 'h' : 'v';
+            } else {
+                axis = Math.random() < vy / (vx + vy) ? 'v' : 'h';
+            }
+            if (axis === 'h') {
+                direction = velocity.x > 0 ? 'l' : 'r';
+            } else {
+                direction = velocity.y > 0 ? 't' : 'b';
+            }
+        }
+        star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
+        if (direction === 'z') {
+            star.z = 0.1;
+            star.x = Math.random() * width;
+            star.y = Math.random() * height;
+        } else if (direction === 'l') {
+            star.x = -OVERFLOW_THRESHOLD;
+            star.y = height * Math.random();
+        } else if (direction === 'r') {
+            star.x = width + OVERFLOW_THRESHOLD;
+            star.y = height * Math.random();
+        } else if (direction === 't') {
+            star.x = width * Math.random();
+            star.y = -OVERFLOW_THRESHOLD;
+        } else if (direction === 'b') {
+            star.x = width * Math.random();
+            star.y = height + OVERFLOW_THRESHOLD;
+        }
+    }
+    function resize() {
+        scale = window.devicePixelRatio || 1;
+        width = window.innerWidth * scale;
+        height = window.innerHeight * scale;
+        canvas.width = width;
+        canvas.height = height;
+        stars.forEach(placeStar);
+    }
+    function step() {
+        context.clearRect(0, 0, width, height);
+        update();
+        render();
+        requestAnimationFrame(step);
+    }
+    function update() {
+        velocity.tx *= 0.96;
+        velocity.ty *= 0.96;
+        velocity.x += (velocity.tx - velocity.x) * 0.8;
+        velocity.y += (velocity.ty - velocity.y) * 0.8;
+        stars.forEach((star) => {
+            star.x += velocity.x * star.z;
+            star.y += velocity.y * star.z;
+            star.x += (star.x - width / 2) * velocity.z * star.z;
+            star.y += (star.y - height / 2) * velocity.z * star.z;
+            star.z += velocity.z;
+            if (
+                star.x < -OVERFLOW_THRESHOLD ||
+                star.x > width + OVERFLOW_THRESHOLD ||
+                star.y < -OVERFLOW_THRESHOLD ||
+                star.y > height + OVERFLOW_THRESHOLD
+            ) {
+                recycleStar(star);
+            }
+        });
+    }
+    function render() {
+        stars.forEach((star) => {
+            context.beginPath();
+            context.lineCap = 'round';
+            context.lineWidth = STAR_SIZE * star.z * scale;
+            context.globalAlpha = 0.5 + 0.5 * Math.random();
+            context.strokeStyle = STAR_COLOR;
+            context.beginPath();
+            context.moveTo(star.x, star.y);
+            let tailX = velocity.x * 2;
+            let tailY = velocity.y * 2;
+            if (Math.abs(tailX) < 0.1) tailX = 0.5;
+            if (Math.abs(tailY) < 0.1) tailY = 0.5;
+            context.lineTo(star.x + tailX, star.y + tailY);
+            context.stroke();
+        });
+    }
+    function movePointer(x, y) {
+        if (typeof pointerX === 'number' && typeof pointerY === 'number') {
+            let ox = x - pointerX;
+            let oy = y - pointerY;
+            velocity.tx = velocity.tx + (ox / 100) * scale * (touchInput ? 1 : -1);
+            velocity.ty = velocity.ty + (oy / 160) * scale * (touchInput ? 1 : -1);
+
+        }
+        pointerX = x;
+        pointerY = y;
+    }
+    function onMouseMove(event) {
+        touchInput = false;
+        movePointer(event.clientX, event.clientY);
+    }
+    function onTouchMove(event) {
+        touchInput = true;
+        movePointer(event.touches[0].clientX, event.touches[0].clientY, true);
+        event.preventDefault();
+    }
+    function onMouseLeave() {
+        pointerX = null;
+        pointerY = null;
+    }
+    
+    const qaButton = document.getElementById('qa-btn');
+    qaButton.addEventListener('click', () => {
+        location.href = './QAQ.html';
+    });
+})();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('check-5');
+    checkbox.addEventListener('change', function() {
+        const body = document.body;
+        if (checkbox.checked) {
+            body.style.backgroundImage = 'linear-gradient(-225deg, #ddb1e5 0%, #afa6ef 29%, #f9bed2 100%)';
+        } else {
+            body.style.backgroundImage = 'linear-gradient(-225deg, #5c4f5f 0%, #555366 29%, #5f4a50 100%)';
+        }
+    });
+});
+
+</script>
+</html>

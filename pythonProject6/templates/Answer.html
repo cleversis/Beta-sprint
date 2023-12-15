@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问答</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            --color: #E1E1E1;
+            background-color: #f1f0f0;
+            background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+            background-size: 55px 55px;
+        }
+
+        /**/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            width: 80%;
+            height: 50%;
+            border-bottom: 1px solid #edeef0;
+            line-height: 111px;
+            margin: auto;
+        }
+
+        .fd-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            height: 222px;
+            background-image: url(static/fd.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        .shortcut {
+            margin: 220px auto;
+            background-color: #f6e7ed;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .nav a {
+            display: inline-block;
+            height: 111px;
+            padding: 0 30px;
+            font-size: 25px;
+            color: #4c4c4c;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            background-color: #fcbcd2;
+        }
+
+        .slidebox {
+            width: 400px;
+            height: 750px;
+            border: 1px solid #f1f1f1;
+            margin: 100px 0 100px 50px;
+            background-color: #f6e7ed;
+        }
+
+        .wen {
+            font-size: 30px;
+            padding: 0 60px;
+        }
+
+        .footer {
+            height: 300px;
+            width: 1000px;
+            background-color: transparent;
+            position: relative;
+            top: 200px;
+            margin: auto;
+            border-top: 1px dashed black;
+        }
+
+        .footer .w {
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .xx {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 600px;
+            top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .xf {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 350px;
+            top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .app {
+            float: right;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /*以下是留言板*/
+        .messages {
+            width: 600px;
+            height: 1000px;
+            position: absolute;
+            top: 550px;
+            right: 200px;
+            border: 1px solid #f1f1f1;
+            background-color: #f6e7ed;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-direction: column;
+            padding-bottom: 20%;
+            width: 70%;
+            height: 10%;
+            margin-left: 5%;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        input,
+        textarea {
+            border: none;
+            color: #000;
+            margin-bottom: 40px;
+            font: 900 20px '';
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        #username {
+            top: 0px;
+            height: 3%;
+            width: 80%;
+        }
+
+        #message {
+            top: 0px;
+            height: 30%;
+            width: 80%;
+        }
+
+        .messages h1 {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 70px;
+            font-size: 50px;
+            background-image: linear-gradient(135deg, #9aa5d2 0%, #b99cd6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 10px;
+        }
+
+        .submitBtn {
+            /* position: absolute;
+            right: 0;
+            bottom: 0; */
+            border: none;
+            font-size: 20px;
+            letter-spacing: 5px;
+            width: 100px;
+            height: 70px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #ddd0d5, #fff7fe);
+            box-shadow: 14px 14px 43px #7d7679,
+                -14px -14px 43px #ffffff;
+        }
+
+        #messageBoard {
+            width: 100%;
+            text-align: left;
+        }
+
+        @keyframes messageFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .message {
+            width: 70%;
+            margin: 0 auto;
+            padding: 10px;
+            opacity: 0;
+            animation: messageFadeIn 0.5s ease forwards;
+            background-image: linear-gradient(90deg, #f9bed2 0%, #e0c3fc 100%);
+            background-color: #fff;
+            margin: 70px 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px #00000026;
+            text-shadow: 0px 0px 20px #ffffff;
+        }
+
+        .message-info {
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            position: relative;
+        }
+
+        .info {
+            transform: translateY(-30px);
+        }
+
+        .info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 10px #fff solid;
+        }
+
+        strong {
+            position: absolute;
+            width: 800px;
+            letter-spacing: 3px;
+            top: 70px;
+            left: 170px;
+        }
+
+        .message-info span {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .content {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 70px;
+            font-size: 50px;
+            background-image: linear-gradient(135deg, #9aa5d2 0%, #b99cd6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 10px;
+        }
+
+        .title-input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            left: 30px;
+        }
+
+        .font {
+            position: absolute;
+            top: 50px;
+            font-size: 80px;
+            font-weight: 700;
+            background-image: linear-gradient(135deg, #9aa5d2 0%, #b99cd6 100%);
+        }
+
+        .titlebox {
+            height: 180px;
+            width: 550px;
+            margin: auto;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            top: 350px;
+            left: 450px;
+        }
+
+        .answerbox {
+            background-color: #fff;
+            width: 350px;
+            height: 400px;
+            margin: auto;
+            position: absolute;
+            top: 800px;
+            left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="shortcut">
+        <div class="fd-image"></div>
+        <div class="nav">
+            <a href="{{ url_for('a') }}" target="_blank">Note</a><a href="{{ url_for('e') }}" target="_blank">Q&A</a><a
+                href="{{ url_for('b') }}" target="_blank">Home</a>
+        </div>
+    </header>
+    <div class="titlebox">
+        <h1 class="font">留言界面</h1>
+    </div>
+    <section class="slidebox">
+        <div class="">
+            <label class="content">标题</label>
+            <input type="text" id="title" name="title" class="title-input">
+            <textarea placeholder="描述" minlength="300px" id="description"></textarea>
+            <button class="submitBtn" id="submitBtn2">提问</button>
+        </div>
+        <div id="messageBoard2"></div>
+    </section>
+    <!--以下是留言板-->
+    <div class="messages">
+        <h1>留言板</h1>
+        <div class="">
+            <input type="text" id="username" placeholder="用户名">
+            <textarea placeholder="留言内容" minlength="300px" id="message"></textarea>
+            <button class="submitBtn" id="submitBtn">留言</button>
+        </div>
+        <div id="messageBoard"></div>
+    </div>
+    <div class="footer">
+        <div class="w">Friendly Link</div>
+        <div class="xf">
+            <img src="static/xinfen.png" class="img1">
+            <div>Complaints Box</div>
+        </div>
+        <div class="xx">
+            <img src="static/xiaoxi.png" class="img2">
+            <div>Contact Us</div>
+        </div>
+        <div class="app">AppWhizzes版权所有</div>
+    </div>
+</body>
+
+<!--下面这段是鼠标滚轮滑动时，fd图片翻折的JavaScript（我把fd绑到导航栏里边了）-->
+<script>
+    window.addEventListener('scroll', function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var fdImage = document.querySelector('.fd-image');
+        var transformValue = Math.max(0, 1 - (scrollTop / 200));
+        fdImage.style.transform = 'scaleY(' + transformValue + ')';
+    });
+</script>
+<script>
+    function fetchAndRenderMessages() {
+        fetch('/get_messages')
+            .then(response => response.json())
+            .then(data => {
+                insertData('messageBoard', data.messages);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function fetchAndRenderTopic() {
+        fetch('/get_topics')
+            .then(response => response.json())
+            .then(data => {
+                insertDataTopic('messageBoard2', data.topics);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        var username = document.getElementById('username').value;
+        var message = document.getElementById('message').value;
+
+        // 使用fetch调用插入消息数据接口
+        fetch('/insert_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    message: message
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 处理返回的数据，如果插入成功，你可以在前端进行相应的操作
+                console.log(data);
+                // insertData('messageBoard', data)
+                document.getElementById('username').value = '';
+                document.getElementById('message').value = '';
+                fetchAndRenderMessages();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchAndRenderMessages();
+        fetchAndRenderTopic();
+    });
+
+    function insertData(pid, data) {
+        var messageBoard = document.getElementById(pid);
+        messageBoard.innerHTML = '';
+        data.map(item => {
+            var newMessage = document.createElement('div');
+            newMessage.classList.add('message');
+            newMessage.innerHTML =
+                '<div class="message-info"><div class="info"><img src="static/1.jpg"><strong>' +
+                item.username + '</strong></div><span>发布于：' + getCurrentTime() +
+                '</span></div><div class="content">' + item.message + '</div>';
+            messageBoard.insertBefore(newMessage, messageBoard.firstChild);
+        })
+    }
+    function insertDataTopic(pid, data) {
+        var messageBoard = document.getElementById(pid);
+        messageBoard.innerHTML = '';
+        data.map(item => {
+            var newMessage = document.createElement('div');
+            newMessage.classList.add('message');
+            newMessage.innerHTML =
+                '<div class="message-info"><div class="info"><img src="static/1.jpg"><strong>' +
+                 item.title + '</strong></div><span>发布于：' + getCurrentTime() +
+                '</span></div><div class="content">' + item.description + '</div>';
+            messageBoard.insertBefore(newMessage, messageBoard.firstChild);
+        })
+    }
+
+
+    document.getElementById('submitBtn2').addEventListener('click', function () {
+        var title = document.getElementById('title').value;
+        var description = document.getElementById('description').value;
+
+        // 使用fetch调用插入话题数据接口
+        fetch('/insert_topic', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: title,
+                    description: description
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 处理返回的数据，如果插入成功，你可以在前端进行相应的操作
+                console.log(data);
+                document.getElementById('title').value = '';
+                document.getElementById('description').value = '';
+                fetchAndRenderTopic();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    function getCurrentTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = ('0' + (now.getMonth() + 1)).slice(-2);
+        var day = ('0' + now.getDate()).slice(-2);
+        var hours = ('0' + now.getHours()).slice(-2);
+        var minutes = ('0' + now.getMinutes()).slice(-2);
+        var seconds = ('0' + now.getSeconds()).slice(-2);
+        return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    }
+</script>
+
+</html>

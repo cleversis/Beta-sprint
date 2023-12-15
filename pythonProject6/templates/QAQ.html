@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问答</title>
+    <style>
+        body {
+            background-image: url(static/fd.jpg);
+            background-repeat: no-repeat;
+            background-position: center -8%;
+            background-color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            width: 1000px;
+            height: 111px;
+            border-bottom: 1px solid #edeef0;
+            line-height: 111px;
+            margin: auto;
+        }
+
+        .shortcut {
+            margin: 220px auto;
+            background-color: #f6e7ed;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .nav a {
+            display: inline-block;
+            height: 111px;
+            padding: 0 30px;
+            font-size: 25px;
+            color: #4c4c4c;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            background-color: #fcbcd2;
+        }
+
+        .titlebox {
+            height: 120px;
+            margin: auto;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            top: 350px;
+            left: 350px;
+        }
+
+        .font {
+            font-size: 55px;
+            font-weight: 700;
+        }
+
+        .answerbox {
+            width: 800px;
+            height: 500px;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            top: 450px;
+            left: 100px;
+            background-color: #f6e7ed;
+        }
+
+        .slidebox {
+            width: 350px;
+            height: 750px;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            right: 0%;
+            top: 330px;
+            background-color: #f6e7ed;
+        }
+
+        .slidebox img {
+            width: 350px;
+        }
+
+        .wen {
+            font-size: 30px;
+            padding: 0 60px;
+        }
+
+        .box {
+            background-color: #fff;
+            width: 250px;
+            height: 400px;
+            margin: auto;
+            border: 1px solid black;
+        }
+
+        .inputt {
+            position: relative;
+            left: 50px;
+            top: 8px;
+            background-color: #fff;
+        }
+
+        .bt {
+            position: absolute;
+            left: 235px;
+            top: 685px;
+        }
+
+        .footer {
+            height: 300px;
+            width: 1000px;
+            background-color: #fff;
+            position: relative;
+            top: 600px;
+            margin: auto;
+            border-top: 1px dashed black;
+        }
+
+        .footer .w {
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .xx {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 600px;
+            top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .xf {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 350px;
+            top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .app {
+            float: right;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="shortcut">
+        <div class="nav">
+            <a href="{{ url_for('a') }}" target="_blank">Note</a><a href="{{ url_for('e') }}" target="_blank">Q&A</a><a
+                href="{{ url_for('b') }}" target="_blank">Home</a>&nbsp;
+        </div>
+    </header>
+    <div class="titlebox">
+        <h1 class="font">Q&A sheet</h1>
+    </div>
+    <section class="answerbox">
+    </section>
+    <section class="slidebox">
+        <img src="jushou.jpg">
+        <p class="wen">Ask a question</p>
+        <div class="box"></div>
+        <input type="text" class="inputt">
+        <botton class="bt">发送</botton>
+    </section>
+    <div class="footer">
+        <div class="w">Friendly Link</div>
+        <div class="xf">
+            <img src="static/xinfen.png" class="img1">
+            <div>Complaints Box</div>
+        </div>
+        <div class="xx">
+            <img src="static/xiaoxi.png" class="img2">
+            <div>Contact Us</div>
+        </div>
+        <div class="app">AppWhizzes版权所有</div>
+    </div>
+</body>
+<!---->
+<style type="text/css">
+    .answerbox {
+        width: 800px;
+        height: 500px;
+        border: 1px solid #f1f1f1;
+        position: absolute;
+        top: 450px;
+        left: 100px;
+        background-color: #f6e7ed;
+        padding: 20px;
+        /* 添加内边距来布局表单元素 */
+    }
+
+    .search-input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px;
+        width: 400px;
+        max-width: 100%;
+        margin-bottom: 10px;
+        /* 调整表单元素之间的间距 */
+    }
+
+    .search-submit {
+        background-color: #b0c0e2;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .search-submit:hover {
+        background-color: #b0c0e2;
+    }
+
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .results-table th,
+    .results-table td {
+        border: 1px solid #ffffff;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .results-table th {
+        background-color: #c9d7f6;
+    }
+
+
+    .results-table tr:hover {
+        background-color: #ffffff;
+    }
+</style>
+
+<div class="answerbox">
+    <h2>键入您的问题</h2>
+    <form action="#" method="get">
+        <input type="text" class="search-input" name="q" placeholder="输入关键词进行搜索" required>
+        <button type="submit" class="search-submit">搜索</button>
+    </form>
+    <table class="results-table">
+        <tr>
+            <th>标题</th>
+            <th>摘要</th>
+            <th>链接</th>
+        </tr>
+
+    </table>
+</div>
+<!---->
+<style>
+    .slidebox {
+        width: 350px;
+        height: 750px;
+        border: 1px solid #f1f1f1;
+        position: absolute;
+        right: 0%;
+        top: 330px;
+        background-color: #f6e7ed;
+        padding: 20px;
+    }
+
+    .form {
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .slidebox .form .form-group .title-input {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        /* 标题输入框的样式 */
+    }
+
+    .slidebox .form .form-group .content-input {
+        width: 60%;
+        padding: 60px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        /* 问题描述输入框的样式 */
+    }
+
+    button.special-btn[type="submit"] {
+        background-color: #b0c0e2;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<div class="slidebox">
+    <img src="jushou.jpg">
+    <div class="form">
+        <h2>提出问题</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="title">标题</label>
+                <input type="text" id="title" name="title" class="title-input" required>
+            </div>
+            <div class="form-group">
+                <label for="content">问题描述</label>
+                <textarea id="content" name="content" class="content-input" required></textarea>
+            </div>
+            <button type="submit" class="btn special-btn">提交</button>
+        </form>
+    </div>
+</div>
+<!---->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('.form');
+        const titleInput = form.querySelector('.title-input');
+        const contentInput = form.querySelector('.content-input');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            // 获取输入的标题和问题描述内容
+            const title = titleInput.value;
+            const content = contentInput.value;
+
+            // 创建一个新表格行
+            const table = document.querySelector('.results-table');
+            const newRow = table.insertRow(-1); // 在表格末尾插入新行
+
+            // 插入标题单元格
+            const titleCell = newRow.insertCell(0);
+            titleCell.textContent = title;
+
+            // 插入摘要单元格
+            const contentCell = newRow.insertCell(1);
+            contentCell.textContent = content;
+
+            // 插入链接单元格
+            const linkCell = newRow.insertCell(2);
+            linkCell.innerHTML = '<a href="#">链接到搜索结果</a>';
+
+            // 清空输入框
+            titleInput.value = '';
+            contentInput.value = '';
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('.answerbox form');
+        const searchInput = form.querySelector('.search-input');
+        const table = document.querySelector('.results-table');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            const keyword = searchInput.value.trim().toLowerCase(); // 获取输入的关键词并转换为小写
+            const rows = table.querySelectorAll('tr'); // 获取所有表格行
+
+            for (let i = 1; i < rows.length; i++) { // 从第二行开始遍历
+                const row = rows[i];
+                const titleCell = row.cells[0]; // 标题单元格
+                const contentCell = row.cells[1]; // 摘要单元格
+
+                const titleMatch = titleCell.textContent.toLowerCase().includes(keyword); // 标题是否匹配关键词
+                const contentMatch = contentCell.textContent.toLowerCase().includes(
+                keyword); // 摘要是否匹配关键词
+
+                if (titleMatch || contentMatch) {
+                    row.style.display = ''; // 显示匹配的行
+                } else {
+                    row.style.display = 'none'; // 隐藏不匹配的行
+                }
+            }
+        });
+    });
+</script>
+
+</html>

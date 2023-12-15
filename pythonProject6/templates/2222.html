@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <style>
+        body {
+            background-image: url('static/fzu_banner(1).jpg');
+            background-repeat: no-repeat;
+            background-position: center -8%;
+            background-color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            width: 1000px;
+            height: 111px;
+            border-bottom: 1px solid #edeef0;
+            line-height: 111px;
+            margin: auto;
+        }
+
+        .shortcut {
+            margin: 220px auto;
+            background-color: #f6e7ed;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .nav a {
+            display: inline-block;
+            height: 111px;
+            padding: 0 30px;
+            font-size: 25px;
+            color: #4c4c4c;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            background-color: #fcbcd2;
+        }
+
+        .titlebox {
+            height: 80px;
+            margin: auto;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            top: 350px;
+            left: 850px;
+            background-color: #f1f1f1;
+        }
+
+        .font {
+            font-size: 55px;
+            font-weight: 700;
+        }
+
+        .answerbox {
+            width: 800px;
+            height: 500px;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            top: 450px;
+            left: 100px;
+            background-color: lightpink;
+        }
+
+        .slidebox {
+            width: 350px;
+            height: 750px;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            right: 0%;
+            top: 330px;
+            background-color: #f6e7ed;
+        }
+
+        .slidebox img {
+            width: 350px;
+        }
+
+        .wen {
+            font-size: 30px;
+            padding: 0 60px;
+        }
+
+        .box {
+            background-color: #fff;
+            width: 250px;
+            height: 400px;
+            margin: auto;
+            border: 1px solid black;
+        }
+
+        .inputt {
+            position: relative;
+            left: 50px;
+            top: 8px;
+            background-color: #fff;
+        }
+
+        .bt {
+            position: absolute;
+            left: 235px;
+            top: 685px;
+        }
+
+        .footer {
+            height: 300px;
+            width: 1000px;
+            background-color: #fff;
+            position: relative;
+            top: 600px;
+            margin: auto;
+            border-top: 1px dashed black;
+        }
+
+        .footer .w {
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .xx {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 600px;
+            top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .xf {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 350px;
+            top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .app {
+            float: right;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链接模块</title>
+    <style>
+        .link-module {
+            position: absolute;
+            width: 150px;
+            height: 750px;
+            bottom: -210px;
+            left: 40px;
+            padding: 20px;
+            background-color: rgb(247, 194, 202);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-module a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="link-module">
+        <h2>The Links:</h2>
+        <a href="https://jwch.fzu.edu.cn/">教务处</a>
+        <a href="https://moodle.maynoothuniversity.ie/login/index.php">Moodle</a>
+        <a href="https://www.maynoothuniversity.ie/">MIEC library</a>
+        <a href="https://www.example4.com">链接4</a>
+        <a href="https://www.example4.com">链接5</a>
+        <a href="https://www.example4.com">......</a>
+    </div>
+</body>
+
+
+
+
+<body>
+    <header class="shortcut">
+        <div class="nav">
+            <a href="{{ url_for('a') }}" target="_blank">Note</a><a href="{{ url_for('c') }}" target="_blank">Q&A</a><a href="#" class="fr">Home</a>
+        </div>
+    </header>
+    <div class="titlebox">
+        <h1 class="font">download rankings</h1>
+    </div>
+
+    <section class="slidebox">
+        <p class="wen">Ask a question</p>
+        <div class="box"></div>
+        <input type="text" class="inputt">
+        <botton class="bt">发送</botton>
+    </section>
+    <div class="footer">
+        <div class="w">Friendly Link</div>
+        <div class="xf">
+            <img src="static/xinfen.png" class="img1">
+            <div>Complaints Box</div>
+        </div>
+        <div class="xx">
+            <img src="static/xiaoxi.png" class="img2">
+            <div>Contact Us</div>
+        </div>
+        <div class="app">AppWhizzes版权所有</div>
+    </div>
+</body>
+<!---->
+<style type="text/css">
+    .answerbox {
+        width: 800px;
+        height: 500px;
+        border: 1px solid #f1f1f1;
+        position: absolute;
+        top: 50%;
+        left: 45%;
+        background-color: #f6e7ed;
+        padding: 20px; /* 添加内边距来布局表单元素 */
+    }
+
+    .search-input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px;
+        width: 400px;
+        max-width: 100%;
+        margin-bottom: 10px; /* 调整表单元素之间的间距 */
+    }
+
+    .search-submit {
+        background-color: #b0c0e2;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .search-submit:hover {
+        background-color: #b0c0e2;
+    }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .results-table th, .results-table td {
+      border: 1px solid #ffffff;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .results-table th {
+      background-color: #c9d7f6;
+    }
+
+
+    .results-table tr:hover {
+      background-color: #ffffff;
+    }
+
+</style>
+
+<div class="answerbox">
+    <h2>Here are the recent top searches</h2>
+    <form action="#" method="get">
+        <input type="text" class="search-input" name="q" placeholder="输入关键词进行搜索" required>
+        <button type="submit" class="search-submit">搜索</button>
+    </form>
+    <table class="results-table">
+			<tr>
+				<th>file</th>
+				<th>download</th>
+				<th>uploader</th>
+			</tr>
+			<tr>
+				<td>file1</td>
+				<td>300</td>
+				<td>lucy</td>
+			</tr>
+			<tr>
+				<td>file2</td>
+				<td>270</td>
+				<td>cleversis</td>
+			</tr>
+            <tr>
+				<td>file3</td>
+				<td>133</td>
+				<td>zhalieganghuamo</td>
+			</tr>
+            <tr>
+				<td>file4</td>
+				<td>234</td>
+				<td>stupid boy</td>
+			</tr>
+            <tr>
+				<td>file5</td>
+				<td>762</td>
+				<td>cleve boy</td>
+			</tr>
+		</table>
+</div>
+<!---->
+<style>
+.slidebox {
+    width: 350px;
+    height: 750px;
+    border: 1px solid #f1f1f1;
+    position: absolute;
+    right: 0%;
+    top: 330px;
+    background-color: #f6e7ed;
+    padding: 20px;
+}
+
+.form {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.slidebox .form .form-group .title-input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    /* 标题输入框的样式 */
+}
+
+.slidebox .form .form-group .content-input {
+    width: 60%;
+    padding: 60px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    /* 问题描述输入框的样式 */
+}
+
+button.special-btn[type="submit"] {
+    background-color: #b0c0e2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .slidebox {
+        position: absolute;
+        top: 80%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        background-color: #f3f3f3;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .slidebox h2 {
+        margin-bottom: 20px;
+    }
+
+    .slidebox .content-input {
+        margin-bottom: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 90%;
+        min-height: 400px;
+        background-color: lightgray;
+        border: 1px solid black; /* Added black border */
+    }
+
+    .slidebox .title-input {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 90%;
+        min-height: 30px;
+    }
+
+    .slidebox .btn {
+        background-color: #0099ff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="slidebox">
+        <div class="output"></div>
+        <div class="form">
+            <h2>"uu world"</h2>
+            <div class="content-input">good morning! friends!
+            <div class="title-output"></div></div>
+            <input type="text" class="title-input" placeholder="input your content">
+            <button type="submit" class="btn special-btn" onclick="updateTitle()">提交</button>
+        </div>
+    </div>
+
+    <script>
+        function updateTitle() {
+            var titleInput = document.querySelector(".title-input");
+            var titleOutput = document.querySelector(".title-output");
+            titleOutput.innerHTML = titleInput.value;
+        }
+    </script>
+</body>
+</html>
